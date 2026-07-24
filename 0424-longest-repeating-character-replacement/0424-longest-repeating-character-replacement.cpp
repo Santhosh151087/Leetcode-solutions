@@ -9,7 +9,7 @@ public:
         while(right<s.size()){
             freq[s[right]-'A']++;
             maxF = max(maxF , freq[s[right]-'A']);
-            while(right - left+1 - maxF >k){
+            if(right - left+1 - maxF >k){
                 
                 freq[s[left]-'A']--;
                 left++;
