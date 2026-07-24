@@ -13,9 +13,9 @@ public:
                 
                 freq[s[left]-'A']--;
                 left++;
-                for(int i=0;i<26;i++){
-                    maxF = max(maxF ,freq[i]);
-                }
+                // for(int i=0;i<26;i++){
+                //     maxF = max(maxF ,freq[i]);
+                // }
             }
             ans = max(ans , right - left+1);
             right++;
