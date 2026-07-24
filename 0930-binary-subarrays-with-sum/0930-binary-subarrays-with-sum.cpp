@@ -1,20 +1,24 @@
 class Solution {
 public:
-    int numSubarraysWithSum(vector<int>& nums, int goal) {
-        map<int , int> map;
+    int find(vector<int>& nums, int goal){
+        if(goal<0)
+        return 0;
+         int ans = 0;
+        int right = 0;
+        int left = 0;
         int sum = 0;
-        map[0] = 1;
-        int ans = 0;
-        for(int i=0;i<nums.size();i++){
-            sum+=nums[i];
-            if(map.find(sum - goal)!=map.end()){
-                ans+=map[sum-goal];
-                // map[sum-goal]++;
-            }
+        while(right<nums.size()){
+            sum +=nums[right];
            
-                map[sum]++;
-            
+            while(sum>goal){
+               sum-=nums[left++];
+            }
+            ans+=(right-left)+1;
+            right++;
         }
         return ans;
+    }
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+       return find(nums, goal) - find(nums , goal-1);
     }
 };
