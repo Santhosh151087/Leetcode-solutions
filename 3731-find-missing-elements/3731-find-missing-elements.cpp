@@ -4,7 +4,8 @@ public:
         int minn = nums[0];
         int maxx = nums[0];
         set<int> st;
-        for(int i=0;i<nums.size();i++){
+        int len = nums.size();
+        for(int i=0;i<len;i++){
             minn = min(minn , nums[i]);
             maxx = max(maxx , nums[i]);
             st.insert(nums[i]);
