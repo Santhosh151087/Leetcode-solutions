@@ -3,17 +3,18 @@ public:
     vector<int> asteroidCollision(vector<int>& arr) {
         vector<int> ans;
         stack<int> st;
-        for(int cur : arr){
+        for(int i=arr.size()-1;i>=0;i--){
+            int cur = arr[i];
             if(st.empty() || (st.top()<0 && cur <0 ) || (st.top()<0  && cur<0))
             st.push(cur);
-            else if(cur < 0){
+            else if(cur > 0){
                 int curabs = abs(cur);
-                while(!st.empty() && st.top()>0 &&st.top() < curabs){
+                while(!st.empty() && st.top()<0 && abs(st.top()) < curabs){
                     st.pop();
                 }
-                if(!st.empty() && st.top()>0 && st.top() == curabs)
+                if(!st.empty() && st.top()<0 && abs(st.top()) == curabs)
                 st.pop();
-                else if(st.empty() || st.top()<0)
+                else if(st.empty() || st.top()>0)
                 st.push(cur);
             }
             else{
@@ -32,7 +33,7 @@ public:
             ans.push_back(st.top());
             st.pop();
         }
-        reverse(ans.begin() , ans.end());
+        // reverse(ans.begin() , ans.end());
         return ans;
     }
 };
