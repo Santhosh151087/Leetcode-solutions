@@ -1,11 +1,6 @@
-# Write your MySQL query statement below
-select (
-select num from Mynumbers
+select max(t1.num) as num from (
+select num from 
+Mynumbers 
 group by num
-having count(num) = 1
-order by num desc
-limit 1
-)
- as num from Mynumbers
- limit 1;
- 
+having count(num) =1
+) as t1;
