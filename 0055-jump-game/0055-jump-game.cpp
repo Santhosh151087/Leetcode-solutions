@@ -7,8 +7,8 @@ public:
         return false;
         far = max(far , i+nums[i]);
        }
-       if(far >=nums.size()-1)
+    //    if(far >=nums.size()-1)
        return true;
-       return false;
+    //    return false;
     }
 };
