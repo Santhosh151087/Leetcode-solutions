@@ -1,32 +1,42 @@
+// the idea is based on slope if the slope increase increase the valuse , if slope remains same add 1 , if slope decreases note the last value and then increse by 1 for all finally add which is greatest 
+
+
 class Solution {
 public:
     int candy(vector<int>& arr) {
         int N = arr.size();
-        vector<int> left(N);
-        vector<int> right(N);
-        right[N-1] = 1;
-        left[0] = 1;
-        for(int i=1;i<N;i++){
-            if(arr[i] > arr[i-1]){
-                left[i] = left[i-1] +1;
+        int ans = 0;
+        int ind = 0;
+        int peek = 1;
+        while (ind < N) {
+            if (ind == 0 || arr[ind - 1] == arr[ind]) {
+                ans += 1;
+                ind++;
+                continue;
             }
-            else{
-                left[i] = 1;
-            }
-        }
-        int ans =max(left[N-1] , right[N-1]);
-        for(int i=N-2;i>=0;i--){
-            if(arr[i] > arr[i+1])
-            right[i] = right[i+1]+1;
-            else 
-            right[i] = 1;
-            ans+=max(left[i] , right[i]);
-        }
-        
-        
+            peek = 1;
 
+            while (ind < N && arr[ind - 1] < arr[ind]) {
+                peek++;
+                ans += peek;
+                ind++;
+                
+            }
+            
+            if(ind<N && arr[ind-1] > arr[ind]){
+                int speek = 1;
+                ans-=peek;
+                while(ind <N && arr[ind-1] > arr[ind]){
+                ans+=speek;
+                ind++;
+                speek++;
+            }
+            ans+=max(peek , speek);
+            }
+            
+            
+        }
 
         return ans;
-
     }
 };
