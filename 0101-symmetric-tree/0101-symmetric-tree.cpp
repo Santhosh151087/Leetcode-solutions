@@ -11,17 +11,18 @@
  */
 class Solution {
 public:
-    bool solve(TreeNode* node1 , TreeNode* node2){
-        if(node1==nullptr && node2 ==nullptr)
+    bool solve(TreeNode* root1 , TreeNode* root2){
+        if(root1==nullptr && root2==nullptr)
         return true;
-        if(node1==nullptr || node2 ==nullptr)
+        if(root1==nullptr || root2==nullptr)
         return false;
-        if(node1->val !=node2->val)
+        if(root1->val !=root2->val)
         return false;
-        return solve(node1->left,node2->right)&& solve(node1->right , node2->left);
-        
+        bool left = solve(root1->left , root2->right);
+        bool right = solve(root1->right , root2->left);
+        return left && right;
     }
     bool isSymmetric(TreeNode* root) {
-        return solve(root->left , root->right);
+        return solve(root , root);
     }
 };
