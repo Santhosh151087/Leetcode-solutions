@@ -11,22 +11,18 @@
  */
 class Solution {
 public:
-    int findLen(TreeNode* root){
-        if(root==nullptr)
-        return 0;
-        int left = findLen(root->left);
-        int right = findLen(root->right);
-        return 1+max(left , right);
+int ans = 0;
+    int solve(TreeNode* root){
+        if(root==nullptr){
+            return 0;
+        }
+        int left = solve(root->left);
+        int right  = solve(root->right);
+        ans = max(left+right , ans);
+        return max(left , right)+1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(root==nullptr)
-        return 0;
-
-        int left = findLen(root->left);
-        int right = findLen(root->right);
-        int curd  = left+right;
-        int leftd = diameterOfBinaryTree(root->left);
-        int rightd = diameterOfBinaryTree(root->right);
-        return max(curd , max(leftd,rightd));
+        solve(root);
+        return ans;
     }
 };
