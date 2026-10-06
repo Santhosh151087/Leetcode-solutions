@@ -35,7 +35,7 @@ public:
         queue<pair<TreeNode* , int>> q ;// Node , dis
         vector<int> ans;
         q.push({target , 0});
-        set<TreeNode*> visited;
+        unordered_set<TreeNode*> visited;
         while(!q.empty()){
             pair<TreeNode* , int> cur=q.front();
             q.pop();
