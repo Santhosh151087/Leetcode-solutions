@@ -11,16 +11,15 @@
  */
 class Solution {
 public:
-    TreeNode* solve(vector<int>& postorder , int ps , int pe , vector<int>& inorder   ,int is , int ie , map<int,int>& imp){
+    TreeNode* solve(vector<int>& postorder , int ps , int pe , vector<int> &inorder   ,int is , int ie , map<int,int> &imp){
         if(ps>pe || is > ie)
         return nullptr;
         TreeNode* node = new TreeNode(postorder[pe]);
         int iroot = imp[postorder[pe]];
         int ileft = iroot - is;
         int iright = ie - iroot;
-      
-        node->left = solve(postorder , ps , ps+ileft-1 , inorder ,is , iroot-1 , imp);
-          node->right = solve(postorder ,ps+ileft , pe-1, inorder ,iroot+1 ,ie, imp);
+        node->right = solve(postorder ,pe - iright , pe-1, inorder ,is+1 ,ie, imp);
+        node->left = solve(postorder , ps , pe-iright-1 , inorder ,is , iroot-1 , imp);
         return node;
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
