@@ -11,31 +11,29 @@
  */
 class Solution {
 public:
-    // TreeNode* prev;
-    TreeNode* findLast(TreeNode* root){
-     if (root->right == nullptr) {
-           
-            return root;
-        }
-    // prev = root;
-    return findLast(root->right);
-}
-   
+    //finding left most right here we can also use right most left
+    TreeNode* findlast(TreeNode*root){
+        if(root->right==nullptr)
+        return root;
+        return findlast(root->right);
+    }
     TreeNode* deleteNode(TreeNode* root, int key) {
         if(root==nullptr)
         return root;
-        if(root->val > key)
-        root->left = deleteNode(root->left , key);
-        else if(root->val <key)
-        root->right = deleteNode(root->right , key);
+        if(root->val > key){
+            root->left =  deleteNode(root->left , key);
+        }
+        else if(root->val <key){
+            root->right= deleteNode(root->right , key);
+        }
+
         else{
-            if(root->left == nullptr)
+            if(root->left==nullptr)
             return root->right;
-            else if(root->right ==nullptr)
+            if(root->right==nullptr)
             return root->left;
             else{
-               
-                TreeNode* last = findLast(root->left);
+                TreeNode* last = findlast(root->left);
                 root->val = last->val;
                 root->left = deleteNode(root->left , root->val);
                 
