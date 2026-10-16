@@ -14,20 +14,19 @@
  * }
  */
 class Solution {
-    public TreeNode insert(TreeNode root  ,int val ){
-        if(root == null)
-        return new TreeNode(val);
-        if(root.val<val)
-        root.right = insert(root.right , val);
-        else
-        root.left = insert(root.left , val);
+    int ind = 0;
+
+    TreeNode solve(int[] preorder, int bound) {
+        if(ind==preorder.length || preorder[ind] >bound )
+        return null;
+        TreeNode root = new TreeNode(preorder[ind++]);
+        root.left = solve(preorder ,root.val);
+        root.right = solve(preorder , bound);
         return root;
     }
+
     public TreeNode bstFromPreorder(int[] preorder) {
-        TreeNode root = null;
-        for(int i=0;i<preorder.length;i++){
-            root = insert(root , preorder[i]);
-        }
-        return root;
+
+        return solve(preorder, Integer.MAX_VALUE);
     }
 }
