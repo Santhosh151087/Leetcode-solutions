@@ -11,28 +11,42 @@
  */
 class Solution {
 public:
-    vector<int> arr;
-    vector<TreeNode*> ns;
-    
-    void traverse(TreeNode* root){
-        if(root==nullptr)
-        return ;
-        traverse(root->left);
-        arr.push_back(root->val);
-        ns.push_back(root);
-        traverse(root->right);
-    }
+
     void recoverTree(TreeNode* root) {
-       traverse(root);
-       
-       sort(arr.begin() , arr.end());
-       for(int i=0;i<arr.size();i++){
-        // cout<<arr[i]<<" "<<ns[i]->val<<endl;
-        if(arr[i] !=ns[i]->val){
-            ns[i]->val = arr[i];
-        }
-       }
-       
-       
+        TreeNode* first = nullptr;
+        TreeNode* mid = nullptr;
+        TreeNode* last = nullptr;
+        TreeNode* prev = nullptr;
+        TreeNode* cur = root;
+        stack<TreeNode*> st;
+        while(!st.empty() || cur!=nullptr){
+            while(cur!=nullptr){
+                st.push(cur);
+                cur = cur->left;
+            }
+            cur = st.top();
+            st.pop();
+            if(prev!=nullptr){
+               if(prev->val > cur->val){
+                    if(first==nullptr){
+                        first = prev;
+                        mid = cur;
+                    }
+                    else{
+                int temp = first->val;
+                first->val  = cur->val;
+                cur->val = temp;
+                        return;
+                    }
+                }
+            }
+            prev = cur;
+            cur = cur->right;
+             }
+             if(first==nullptr)
+             return;
+              int temp = first->val;
+                first->val  = mid->val;
+                mid->val = temp;
     }
 };
