@@ -1,37 +1,35 @@
 class Solution {
 public:
-    vector<bool> terminal;
     vector<bool> visited;
-    bool DFS(vector<vector<int>>& graph , int cur ){
-        if(terminal[cur])
-        return true;
-        if(visited[cur])
+    vector<bool> path;
+    bool DFS(vector<vector<int>>& graph , int cur){
+        if(path[cur])
         return false;
+        if(visited[cur])
+        return true;
         visited[cur] = true;
+        path[cur] = true;
         for(int adj : graph[cur]){
-            if(!DFS(graph , adj ))
+            if(!DFS(graph ,adj))
             return false;
+
         }
-        visited[cur] = false;
-        return terminal[cur]=true;
+        path[cur] = false;
+        return true;
+
     }
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
         int N = graph.size();
-        int ind = 0;
-        terminal.assign(N , false);
         visited.assign(N , false);
-        for(vector<int> cur : graph){  
-            if(cur.size()==0)
-            terminal[ind] = true;
-            ind++;
+        path.assign(N , false);
+        for(int i=0;i<N;i++){
+            if(!visited[i])
+            DFS(graph , i);
         }
         vector<int> ans;
-        
         for(int i=0;i<N;i++){
-            if(DFS(graph , i )){
-                ans.push_back(i);
-            }
-            
+            if(!path[i])
+            ans.push_back(i);
         }
         return ans;
     }
