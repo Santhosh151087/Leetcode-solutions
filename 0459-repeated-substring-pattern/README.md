@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/repeated-substring-pattern">459. Repeated Substring Pattern</a></h2><h3>Easy</h3><hr><p>Given a string <code>s</code>, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.</p>
+<h2><a href="https://leetcode.com/problems/repeated-substring-pattern/">459. Repeated Substring Pattern</a></h2><h3>Easy</h3><hr><p>Given a string <code>s</code>, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
