@@ -4,15 +4,16 @@ public:
         int N = grid.size();
         if(grid[0][0]==1 || grid[N-1][N-1]==1)
         return -1;
-        priority_queue<tuple<int , int , int> ,
-        vector<tuple<int , int,int>> ,
-        greater<tuple<int , int , int>> > qu;
+        // priority_queue<tuple<int , int , int> ,
+        // vector<tuple<int , int,int>> ,
+        // greater<tuple<int , int , int>> > qu;
+        queue<tuple<int , int , int>> qu;
         qu.push({1 , 0 , 0});
        
         vector<int> dr = {-1 , -1 , -1 , 0 , 0 , 1 , 1 , 1};
         vector<int> dc = {-1 , 0 , 1 , -1 , 1 , -1 , 0 , 1};
         while(!qu.empty()){
-            auto [cost , row , col ] = qu.top();
+            auto [cost , row , col ] = qu.front();
             qu.pop();
             if(row==N-1 && col==N-1)
             return cost;
