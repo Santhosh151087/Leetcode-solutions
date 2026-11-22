@@ -31,7 +31,7 @@ public:
         // cout<<maxlen;
         if(maxlen==0)
         return "";
-        return s.substr(ind - maxlen+1 , maxlen);
+        return s.substr(0 , maxlen);
 
     }
 };
