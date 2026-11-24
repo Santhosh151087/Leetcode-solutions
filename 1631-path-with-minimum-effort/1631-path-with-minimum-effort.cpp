@@ -15,7 +15,10 @@ public:
     while(!qu.empty()){
         auto [prevdis , r , c] = qu.top();
         qu.pop();
+        if(r==N-1 && c==M-1)
+        return prevdis;
         if (prevdis > ans[r][c]) continue;
+
          for(int i=0;i<4;i++){
             int nr = r + dr[i];
             int nc = c + dc[i];
